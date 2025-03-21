@@ -2,7 +2,7 @@ import DashboardMainComponent from "@/components/dashboard/DashboardMainComponen
 
 export default function Home() {
   return (
-    <main className="bg-white">
+    <main className="bg-white dark:bg-gray-900 w-full">
       <DashboardMainComponent />
     </main>
   );

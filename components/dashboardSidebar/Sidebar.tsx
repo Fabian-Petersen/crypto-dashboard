@@ -11,7 +11,7 @@ type SidebarProps = {
 const Sidebar = ({ className }: SidebarProps) => {
   return (
     <aside
-      className={`${className} hidden fixed h-screen sm:flex flex-col gap-2 divide-y divide-gray-200 px-4 border-r-1 border-gray-200`}
+      className={`${className} hidden sm:flex flex-col gap-2 divide-y divide-gray-200 dark:divide-gray-700 px-4 border-r-1 border-gray-200 dark:border-gray-700`}
     >
       <div className="-mx-4">
         <LogoSidebar />

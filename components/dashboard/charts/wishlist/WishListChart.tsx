@@ -8,10 +8,10 @@ type Props = {
   className: string;
 };
 
-const Wishlist = ({ className }: Props) => {
+const WishlistChart = ({ className }: Props) => {
   return (
     <div
-      className={`${className} flex flex-col rounded-lg p-4 border border-clr_blueGray_400 shadow-md gap-4`}
+      className={`${className} flex flex-col rounded-lg p-4 border border-gray-200 dark:border-gray-700 dark:bg-slate-800 shadow-md gap-4`}
     >
       <ChartHeading title="Watchlist" subHeading="Track your favorite assets" />
       <WishlistIndicators />
@@ -20,4 +20,4 @@ const Wishlist = ({ className }: Props) => {
   );
 };
 
-export default Wishlist;
+export default WishlistChart;

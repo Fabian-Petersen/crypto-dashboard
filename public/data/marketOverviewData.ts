@@ -17,32 +17,32 @@ const MarketOverviewData: MarketOverviewTypes[] = [
   {
     id: uuid4(),
     title: "dow jones",
-    value: 4587.64,
-    trend: 0.63,
+    value: 37306.02,
+    trend: 0.86,
   },
   {
     id: uuid4(),
     title: "nasdaq",
-    value: 4587.64,
-    trend: 0.63,
+    value: 14403.97,
+    trend: -0.23,
   },
   {
     id: uuid4(),
     title: "bitcoin",
-    value: 4587.64,
-    trend: 0.63,
+    value: 42637.3,
+    trend: 2.14,
   },
   {
     id: uuid4(),
     title: "euthereum",
-    value: 4587.64,
-    trend: 0.63,
+    value: 2274.16,
+    trend: 1.87,
   },
   {
     id: uuid4(),
     title: "gold",
-    value: 4587.64,
-    trend: 0.63,
+    value: 2032.3,
+    trend: -0.12,
   },
 ];
 
