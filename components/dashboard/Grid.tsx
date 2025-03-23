@@ -1,7 +1,7 @@
 import ChartHeading from "../ChartHeading";
 import MarketOverviewChart from "./charts/marketOverview/MarketOverviewChart";
-import WishlistChart from "./charts/wishlist/WishListChart";
-import StockPriceChart from "./charts/StockPriceChart";
+import Watchlist from "./charts/watchlist/Watchlist";
+import WeeklyStockPriceChart from "./charts/WeeklyStockPriceChart";
 import Stocks from "./tables/Stocks";
 import CryptoCurrencies from "./tables/CryptoCurrencies";
 import MarketNews from "./tables/MarketNews";
@@ -29,8 +29,8 @@ const Grid = ({ className }: GridProps) => {
       {/* // $ Top row - Indicators */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:grid-rows-3">
         <MarketOverviewChart className="col-span-2 row-span-1" />
-        <WishlistChart className="row-span-3" />
-        <StockPriceChart className="col-span-2 row-start-2 row-span-2" />
+        <Watchlist className="row-span-3" />
+        <WeeklyStockPriceChart className="col-span-2 row-start-2 row-span-2" />
       </div>
 
       {/* // $ Bottom grid - Tables */}

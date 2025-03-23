@@ -1,19 +1,16 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import RootLayout from "./rootLayout";
 
 export const metadata: Metadata = {
   title: "Crypto App",
   description: "A dashboard to track stocks and cryptocurrencies",
 };
 
-export default function RootLayout({
+export default function MainLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body className="">{children}</body>
-    </html>
-  );
+}) {
+  return <RootLayout>{children}</RootLayout>;
 }

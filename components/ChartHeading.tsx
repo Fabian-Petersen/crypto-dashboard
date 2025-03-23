@@ -5,14 +5,14 @@ import * as React from "react";
 type ChartHeadingProps = {
   title: string | undefined;
   className?: string;
-  subHeading?: string;
+  subHeading?: React.ReactNode;
 };
 
 const ChartHeading = ({ title, className, subHeading }: ChartHeadingProps) => {
   return (
     <div className="flex flex-col gap-1">
       <h2
-        className={`${className} dark:text-white text-gray-800 text-[1.5rem] font-bold`}
+        className={`${className} tracking-wide dark:text-white text-gray-800 text-[1.5rem] font-bold`}
       >
         {title}
       </h2>
