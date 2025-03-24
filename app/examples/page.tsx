@@ -1,12 +1,12 @@
 import React from "react";
-import StockTracker from "@/components/StockTracker";
-import CryptoTrackerExample from "@/components/CryptoTrackerExample";
+// import StockTracker from "@/components/StockTracker";
+// import CryptoTrackerExample from "@/components/CryptoTrackerExample";
 
 function page() {
   return (
     <div>
-      <StockTracker />
-      <CryptoTrackerExample />
+      {/* <StockTracker /> */}
+      {/* <CryptoTrackerExample /> */}
     </div>
   );
 }
