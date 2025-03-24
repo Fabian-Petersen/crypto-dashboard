@@ -27,14 +27,14 @@ const formatTimeAgo = (timePublished: string): string => {
 
 // $ Function to fetch market news
 const fetchMarketNews = async (): Promise<NewsItem[]> => {
-  // Use mock data in development environment
+  // $ Use mock data in development environment
   if (process.env.NODE_ENV === "development") {
-    // Simulate API delay
+    // $ Simulate API delay
     await new Promise((resolve) => setTimeout(resolve, 1000));
     return mockMarketNewsData.feed;
   }
 
-  // In production, use the actual API
+  // $ In production, use the actual API
   const apiKey = process.env.NEXT_PUBLIC_APIKEY_ALPHA_VANTAGE || "";
   const response = await fetch(
     `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&sort=LATEST&limit=5&apikey=${apiKey}`
@@ -62,7 +62,7 @@ function MarketNews() {
   } = useQuery({
     queryKey: ["marketNews"],
     queryFn: fetchMarketNews,
-    staleTime: 5 * 60 * 1000, // Consider data fresh for 5 minutes
+    staleTime: 60 * 60 * 1000, // Consider data fresh for 1 hour
     refetchOnWindowFocus: false, // Don't refetch when window regains focus
   });
 

@@ -130,7 +130,10 @@ const Stocks: React.FC = () => {
   };
 
   return (
-    <div className="p-4 col-span-full row-start-1 border border-gray-200 dark:border-gray-700 shadow-md rounded-md h-[500px] overflow-auto">
+    <div
+      id="stocks"
+      className="p-4 col-span-full row-start-1 border border-gray-200 dark:border-gray-700 shadow-md rounded-md h-[500px] overflow-auto"
+    >
       <div className="flex justify-between items-start">
         <ChartHeading title="Stocks" subHeading="Top Performing Stocks Today" />
         <div className="text-sm text-gray-500 dark:text-gray-400">

@@ -51,7 +51,7 @@ const WatchlistItem: React.FC<WatchlistItemProps> = ({
       </div>
       {hoveredItemId === symbol && (
         <button
-          className={`hover:cursor-pointer absolute rounded-full bg-gray-100 text-red-500 top-[-10] right-[-5]`}
+          className={`hover:cursor-pointer absolute rounded-full p-1 bg-slate-200 text-gray-900 top-[-10] left-[-5]`}
           onClick={(e) => {
             e.stopPropagation();
             onRemove(symbol);

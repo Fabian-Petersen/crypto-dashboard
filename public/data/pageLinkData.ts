@@ -28,14 +28,14 @@ const pageLinkData: PageLinksTypes[] = [
   },
   {
     id: uuid4(),
-    url: "/stocks",
+    url: "/#stocks",
     name: "stocks",
     icon: TrendingUp,
     tooltip_content: "Stocks",
   },
   {
     id: uuid4(),
-    url: "/cryptocurrencies",
+    url: "/#cryptocurrencies",
     name: "cryptocurrencies",
     icon: DollarSign,
     tooltip_content: "Cryptocurrencies",

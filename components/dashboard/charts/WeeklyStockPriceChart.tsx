@@ -43,7 +43,6 @@ const WeeklyStockPriceChart = ({ className }: WeeklyStockPriceChartProps) => {
       const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
       setLoading(true);
       try {
-        // $ Use the mock data to create the components, change to the real endpoint for the production application
         const response = await fetch(url);
         const data = await response.json();
 

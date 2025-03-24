@@ -86,7 +86,10 @@ function CryptoCurrencies() {
   };
 
   return (
-    <div className="p-4 col-span-full row-start-2 border border-gray-200 dark:border-gray-700 shadow-md rounded-md h-[500px] overflow-auto">
+    <div
+      id="cryptocurrencies"
+      className="p-4 col-span-full row-start-2 border border-gray-200 dark:border-gray-700 shadow-md rounded-md h-[500px] overflow-auto"
+    >
       <ChartHeading
         title="Crypto Currencies"
         subHeading="Top cryptocurrencies by market cap"
