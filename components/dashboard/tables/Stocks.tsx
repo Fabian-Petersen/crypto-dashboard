@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import ChartHeading from "@/components/ChartHeading";
 import { ArrowUp, ArrowDown } from "lucide-react";
-import axios from "axios";
 
 // Mock data for development - would be replaced with actual API call in production
 import sampleStockData from "@/public/data/sampleStockData_twelveData";
@@ -22,12 +21,11 @@ type StockData = {
 // Function to fetch stock data
 const fetchStockData = async (): Promise<StockData[]> => {
   // In production, replace with actual API call
-  const apiKey = process.env.NEXT_PUBLIC_TWELVE_DATA_API_KEY;
-  const response = await axios.get(
-    `https://api.twelvedata.com/stocks?apikey=${apiKey}`
-  );
-  const data = response.data;
+  // const apiKey = process.env.NEXT_PUBLIC_TWELVE_DATA_API_KEY;
+  // const response = await axios.get(`https://api.twelvedata.com/stocks?apikey=${apiKey}`);
 
+  // For development, use the mock data
+  // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 800));
 
   // Parse the top gainers data from the mock json file
