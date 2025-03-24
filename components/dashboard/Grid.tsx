@@ -5,7 +5,6 @@ import WeeklyStockPriceChart from "./charts/WeeklyStockPriceChart";
 import Stocks from "./tables/Stocks";
 import CryptoCurrencies from "./tables/CryptoCurrencies";
 import MarketNews from "./tables/MarketNews";
-import SearchBar from "../navbar/SearchBar";
 import ThemeToggleButton from "../ThemeToggleButton";
 
 type GridProps = {
@@ -13,17 +12,13 @@ type GridProps = {
 };
 
 const Grid = ({ className }: GridProps) => {
-  // $ Default classes shared by all the graphs
-  // const defaultClasses =
-  //   "rounded-lg p-4 border border-clr_blueGray_400 shadow-md h-[250px]";
   return (
     <div className={`${className} w-full space-y-4 h-auto overflow-hidden p-4`}>
-      <div className="flex justify-around items-center">
+      <div className="flex justify-between items-center">
         <ChartHeading
           title="Financial Dashboard"
           subHeading="Track stocks and cryptocurrencies in real time"
         />
-        <SearchBar className="mr-auto" />
         <ThemeToggleButton />
       </div>
       {/* // $ Top row - Indicators */}

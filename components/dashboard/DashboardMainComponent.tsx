@@ -13,7 +13,6 @@ function DashboardMainComponent() {
   return isMobile ? (
     <div className="grid grid-cols-1 grid-rows-[4rem_1fr] h-auto p-2 gap-4 w-full">
       <SidebarMobileMenu />
-      <Grid className="row-start-2 w-full" />
     </div>
   ) : (
     // $ Set the layout for the dashboard page, 1 column for the sidebar, spanning all rows with a max width of 15rem. The navbar span full width in the first row. The grid start on row 2 and span the rest of the space.

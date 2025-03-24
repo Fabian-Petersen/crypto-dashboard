@@ -1,5 +1,6 @@
 import { X } from "lucide-react";
 import React, { useState } from "react";
+import { useGlobalContext } from "@/app/hooks/useGlobalContext";
 
 type WatchlistItemProps = {
   symbol: string;
@@ -17,12 +18,17 @@ const WatchlistItem: React.FC<WatchlistItemProps> = ({
   onRemove,
 }) => {
   const [hoveredItemId, setHoveredItemId] = useState<string>("");
-
+  const { setSymbol } = useGlobalContext();
   return (
     <article
-      className={`flex justify-between w-full dark:hover:bg-gray-600 hover:bg-gray-100 rounded hover:cursor-pointer py-1 px-2 relative`}
+      className={`flex justify-between w-full py-1 px-2 dark:hover:bg-gray-600 hover:bg-gray-100 rounded hover:cursor-pointer relative`}
       onMouseEnter={() => setHoveredItemId(symbol)}
       onMouseLeave={() => setHoveredItemId("")}
+      onClick={() => setSymbol(symbol)}
+      tabIndex={0} // Allows keyboard focus
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") setSymbol(symbol);
+      }}
     >
       <div className="flex flex-col gap-1">
         <div className="text-sm text-gray-700 dark:text-white capitalize">
@@ -46,7 +52,10 @@ const WatchlistItem: React.FC<WatchlistItemProps> = ({
       {hoveredItemId === symbol && (
         <button
           className={`hover:cursor-pointer absolute rounded-full bg-gray-100 text-red-500 top-[-10] right-[-5]`}
-          onClick={() => onRemove(symbol)}
+          onClick={(e) => {
+            e.stopPropagation();
+            onRemove(symbol);
+          }}
         >
           <X size={16} />
         </button>

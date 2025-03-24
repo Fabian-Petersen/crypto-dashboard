@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import ChartHeading from "@/components/ChartHeading";
+import { useGlobalContext } from "@/app/hooks/useGlobalContext";
 import {
   AreaChart,
   Area,
@@ -27,23 +28,24 @@ type WeeklyStockPriceChartProps = {
   symbol?: string;
 };
 
-const WeeklyStockPriceChart = ({
-  className,
-  symbol = "IBM",
-}: WeeklyStockPriceChartProps) => {
+const WeeklyStockPriceChart = ({ className }: WeeklyStockPriceChartProps) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [stockData, setStockData] = useState<StockDataPoint[]>([]);
   const [currentPrice, setCurrentPrice] = useState<number>(0);
   const [priceChange, setPriceChange] = useState<number>(0);
   const [priceChangePercent, setPriceChangePercent] = useState<string>("0.00");
 
+  const { symbol, setSymbol } = useGlobalContext();
+
   useEffect(() => {
     const fetchData = async () => {
+      const apiKey = process.env.NEXT_PUBLIC_APIKEY_ALPHA_VANTAGE as string;
+      const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
       setLoading(true);
       try {
         // $ Use the mock data to create the components, change to the real endpoint for the production application
-        const response = await fetch("/data/alphaWeeklyCoinData.json");
-        const mockData = await response.json();
+        const response = await fetch(url);
+        const data = await response.json();
 
         // Extract and format the data
         const timeSeriesData: Record<
@@ -55,7 +57,7 @@ const WeeklyStockPriceChart = ({
             "4. close": string;
             "5. volume": string;
           }
-        > = mockData["Time Series (Daily)"];
+        > = data["Time Series (Daily)"];
         const dates = Object.keys(timeSeriesData).sort();
         const last7Dates = dates.slice(-7);
 
@@ -76,7 +78,7 @@ const WeeklyStockPriceChart = ({
           };
         });
 
-        // Calculate price change
+        // $ Calculate price change
         const current = formattedData[0].close;
         const previous = formattedData[1].close;
         const change = current - previous;
@@ -122,17 +124,26 @@ const WeeklyStockPriceChart = ({
             )
           }
         />
-        <ul className="flex dark:bg-gray-600 bg-gray-200 p-1 rounded gap-2">
-          <li className="px-2 py-1 dark:text-white justify-center items-center hover:bg-gray-300 hover:cursor-pointer hover:rounded hover:text-gray-900">
+        <div className="flex dark:bg-gray-600 bg-gray-200 p-1 rounded gap-2">
+          <button
+            className="px-2 py-1 dark:text-white justify-center items-center hover:bg-white hover:cursor-pointer hover:rounded hover:text-gray-900"
+            onClick={() => setSymbol("IBM")}
+          >
             IBM
-          </li>
-          <li className="px-2 py-1 dark:text-white justify-center items-center hover:bg-gray-300 hover:cursor-pointer hover:rounded hover:text-gray-900">
+          </button>
+          <button
+            className="px-2 py-1 dark:text-white justify-center items-center hover:bg-white hover:cursor-pointer hover:rounded hover:text-gray-900"
+            onClick={() => setSymbol("BTC")}
+          >
             BTC
-          </li>
-          <li className="px-2 py-1 dark:text-white justify-center items-center hover:bg-gray-300 hover:cursor-pointer hover:rounded hover:text-gray-900">
+          </button>
+          <button
+            className="px-2 py-1 dark:text-white justify-center items-center hover:bg-white hover:cursor-pointer hover:rounded hover:text-gray-900"
+            onClick={() => setSymbol("ETH")}
+          >
             ETH
-          </li>
-        </ul>
+          </button>
+        </div>
       </div>
 
       {loading ? (

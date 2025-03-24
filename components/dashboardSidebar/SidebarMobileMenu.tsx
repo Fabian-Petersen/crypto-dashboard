@@ -4,7 +4,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useNav } from "@/app/contexts/MenuToggleContext";
 import pageLinkData from "@/public/data/pageLinkData";
-import { LogOutIcon } from "lucide-react";
 import Link from "next/link";
 
 function SidebarMobileMenu() {
@@ -32,15 +31,6 @@ function SidebarMobileMenu() {
             {link.name}
           </Link>
         ))}
-        <Link
-          href="/"
-          className="flex items-center gap-5 text-gray-700 hover:text-gray-900 transition capitalize"
-        >
-          <div className="flex gap-5">
-            <LogOutIcon />
-            <span>Sign Out</span>
-          </div>
-        </Link>
       </nav>
     </motion.aside>
   );
