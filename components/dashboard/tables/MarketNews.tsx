@@ -4,14 +4,31 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import ChartHeading from "@/components/ChartHeading";
 import { Clock, ExternalLink } from "lucide-react";
-import mockMarketNewsData from "@/public/data/mockMarketNewsData";
+// import mockMarketNewsData from "@/public/data/mockMarketNewsData";
 
 // $ Import Types
 import type { NewsItem } from "@/public/data/mockMarketNewsData";
 
 // $ Helper function to format the published time to "X time ago"
 const formatTimeAgo = (timePublished: string): string => {
-  const published = new Date(timePublished);
+  // Parse date in format "20250325T080000" (YYYYMMDDThhmmss)
+  let published: Date;
+
+  if (timePublished.includes("T") && !timePublished.includes("-")) {
+    // Format: "20250325T080000"
+    const year = parseInt(timePublished.slice(0, 4));
+    const month = parseInt(timePublished.slice(4, 6)) - 1; // Months are 0-based in JS
+    const day = parseInt(timePublished.slice(6, 8));
+    const hour = parseInt(timePublished.slice(9, 11));
+    const minute = parseInt(timePublished.slice(11, 13));
+    const second = parseInt(timePublished.slice(13, 15) || "0");
+
+    published = new Date(year, month, day, hour, minute, second);
+  } else {
+    // Try default parsing for other formats
+    published = new Date(timePublished);
+  }
+
   const now = new Date();
   const diffInSeconds = Math.floor(
     (now.getTime() - published.getTime()) / 1000
@@ -27,13 +44,6 @@ const formatTimeAgo = (timePublished: string): string => {
 
 // $ Function to fetch market news
 const fetchMarketNews = async (): Promise<NewsItem[]> => {
-  // $ Use mock data in development environment
-  if (process.env.NODE_ENV === "development") {
-    // $ Simulate API delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    return mockMarketNewsData.feed;
-  }
-
   // $ In production, use the actual API
   const apiKey = process.env.NEXT_PUBLIC_APIKEY_ALPHA_VANTAGE || "";
   const response = await fetch(
@@ -46,10 +56,21 @@ const fetchMarketNews = async (): Promise<NewsItem[]> => {
 
   const data = await response.json();
 
+  // $ Handle different API response formats
   if (data.feed && Array.isArray(data.feed)) {
+    // $ Original expected format
     return data.feed;
+  } else if (data.json && Array.isArray(data.json)) {
+    // $ Format from alphaApiResponseNewsData.json
+    return data.json;
+  } else if (Array.isArray(data)) {
+    // $ Direct array format
+    return data;
   } else {
-    throw new Error("Invalid response format");
+    console.error("Unexpected data structure:", data);
+    throw new Error(
+      "Invalid response format. Please check the API response structure."
+    );
   }
 };
 
