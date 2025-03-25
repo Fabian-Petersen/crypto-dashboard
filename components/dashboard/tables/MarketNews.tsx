@@ -44,30 +44,43 @@ const formatTimeAgo = (timePublished: string): string => {
 
 // $ Function to fetch market news
 const fetchMarketNews = async (): Promise<NewsItem[]> => {
-  // $ In production, use the actual API
-  const apiKey = process.env.NEXT_PUBLIC_APIKEY_ALPHA_VANTAGE || "";
-  const response = await fetch(
-    `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&sort=LATEST&limit=5&apikey=${apiKey}`
-  );
+  try {
+    const apiKey = process.env.NEXT_PUBLIC_APIKEY_ALPHA_VANTAGE || "";
+    const response = await fetch(
+      `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&sort=LATEST&limit=10&apikey=${apiKey}`
+    );
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch news data");
+    if (!response.ok) {
+      throw new Error("Failed to fetch news data");
+    }
+
+    const data = await response.json();
+
+    // Check if data is valid and has the expected structure
+    if (!data || !data.feed || !Array.isArray(data.feed)) {
+      console.error("API response structure:", JSON.stringify(data));
+      // If in production, fall back to local data as backup
+      if (process.env.NODE_ENV === "production") {
+        return (await import("@/public/data/mockMarketNewsData")).default.feed;
+      }
+      throw new Error(
+        "Invalid response format. Please check the API response structure."
+      );
+    }
+
+    // Map the API response to match our expected NewsItem structure
+    return data.feed.map((item: NewsItem) => ({
+      title: item.title || "",
+      url: item.url || "",
+      time_published: item.time_published || "",
+      summary: item.summary || "",
+      source: item.source || "",
+      topics: Array.isArray(item.topics) ? item.topics : [],
+    }));
+  } catch (error) {
+    console.error("Error fetching market news:", error);
+    throw error;
   }
-
-  const data = await response.json();
-
-  // Simple console log for debugging
-  console.log("API Response received:", data);
-
-  // $ Check if data has a feed property that is an array
-  if (data && data.feed && Array.isArray(data.feed)) {
-    return data.feed;
-  }
-
-  // $ If we got here, the data structure doesn't match expectations
-  throw new Error(
-    "Invalid response format: feed property not found or not an array"
-  );
 };
 
 function MarketNews() {
