@@ -56,22 +56,18 @@ const fetchMarketNews = async (): Promise<NewsItem[]> => {
 
   const data = await response.json();
 
-  // $ Handle different API response formats
-  if (data.feed && Array.isArray(data.feed)) {
-    // $ Original expected format
+  // Simple console log for debugging
+  console.log("API Response received:", data);
+
+  // $ Check if data has a feed property that is an array
+  if (data && data.feed && Array.isArray(data.feed)) {
     return data.feed;
-  } else if (data.json && Array.isArray(data.json)) {
-    // $ Format from alphaApiResponseNewsData.json
-    return data.json;
-  } else if (Array.isArray(data)) {
-    // $ Direct array format
-    return data;
-  } else {
-    console.error("Unexpected data structure:", data);
-    throw new Error(
-      "Invalid response format. Please check the API response structure."
-    );
   }
+
+  // $ If we got here, the data structure doesn't match expectations
+  throw new Error(
+    "Invalid response format: feed property not found or not an array"
+  );
 };
 
 function MarketNews() {
