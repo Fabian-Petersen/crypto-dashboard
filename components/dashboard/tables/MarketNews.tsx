@@ -148,7 +148,6 @@ function MarketNews() {
                     </span>
                   ))}
                 </div>
-
                 <a
                   href={item.url}
                   target="_blank"

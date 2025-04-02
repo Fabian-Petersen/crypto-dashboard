@@ -154,7 +154,7 @@ const Stocks: React.FC = () => {
           <table className="min-w-full bg-white dark:bg-gray-800 rounded-md table-fixed">
             <thead className="bg-gray-100 dark:bg-gray-700">
               <tr>
-                <th className="py-3 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-1/5">
+                <th className="py-3 px-4 text-left text-clampTableText font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-1/5">
                   Symbol
                 </th>
                 <th className="py-3 px-4 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-1/5">

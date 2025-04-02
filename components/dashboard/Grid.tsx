@@ -1,11 +1,10 @@
-import ChartHeading from "../ChartHeading";
 import MarketOverviewChart from "./charts/marketOverview/MarketOverviewChart";
 import Watchlist from "./charts/watchlist/Watchlist";
 import WeeklyStockPriceChart from "./charts/WeeklyStockPriceChart";
 import Stocks from "./tables/Stocks";
 import CryptoCurrencies from "./tables/CryptoCurrencies";
 import MarketNews from "./tables/MarketNews";
-import ThemeToggleButton from "../ThemeToggleButton";
+import DesktopHeader from "../header/DesktopHeader";
 
 type GridProps = {
   className?: string;
@@ -13,19 +12,13 @@ type GridProps = {
 
 const Grid = ({ className }: GridProps) => {
   return (
-    <div className={`${className} w-full space-y-4 h-auto overflow-hidden p-4`}>
-      <div className="flex justify-between items-center">
-        <ChartHeading
-          title="Financial Dashboard"
-          subHeading="Track stocks and cryptocurrencies in real time"
-        />
-        <ThemeToggleButton />
-      </div>
+    <div className={`${className} w-full space-y-4 h-auto px-4`}>
+      <DesktopHeader />
       {/* // $ Top row - Indicators */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:grid-rows-3">
-        <MarketOverviewChart className="col-span-2 row-span-1" />
-        <Watchlist className="row-span-3" />
-        <WeeklyStockPriceChart className="col-span-2 row-start-2 row-span-2" />
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr_minmax(250px,300px)] lg:gap-4 gap-y-4 lg:grid-rows-[minmax()_1fr]">
+        <MarketOverviewChart className="w-full lg:col-span-2" />
+        <Watchlist className="lg:col-start-3 lg:row-span-2 row-start-3 col-span-full" />
+        <WeeklyStockPriceChart className="col-span-2 row-start-2 w-full" />
       </div>
 
       {/* // $ Bottom grid - Tables */}

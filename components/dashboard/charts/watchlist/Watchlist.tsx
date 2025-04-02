@@ -49,7 +49,7 @@ const Wishlist: React.FC<WishlistProps> = ({ className }) => {
 
   return (
     <div
-      className={`${className} flex flex-col rounded-lg p-4 border border-gray-200 dark:border-gray-700 dark:bg-slate-800 shadow-md gap-4`}
+      className={`${className} flex flex-col rounded-lg p-4 border border-gray-200 dark:border-gray-700 dark:bg-slate-800 shadow-md gap-4 w-full`}
     >
       <ChartHeading title="Watchlist" subHeading="Track your favorite assets" />
       {indicators.length > 0 ? (

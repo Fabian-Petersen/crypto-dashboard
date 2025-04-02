@@ -8,6 +8,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        clampSidebarText: "clamp(0.8rem,3vw,1.5rem)",
+        clampTableText: "clamp(0.75rem,2vw,0,85rem)",
+        clampTableData: "clamp(0.8rem,2.5vw,0,9rem)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

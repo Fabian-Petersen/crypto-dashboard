@@ -15,10 +15,10 @@ function MarketIndicators() {
             key={item.id}
             className={`p-2 flex flex-col gap-2 justify-evenly flex-1`}
           >
-            <div className="text-sm text-gray-700 dark:text-gray-200 capitalize">
+            <div className="text-[clamp(0.6rem,2vw,0.875rem)] text-gray-700 dark:text-gray-200 capitalize">
               {item.title}
             </div>
-            <p className="text-gray-900 dark:text-gray-200 capitalize text-[1.3rem] font-bold">
+            <p className="text-gray-900 dark:text-gray-200 capitalize text-[clamp(0.95rem,2vw,1.2rem)] font-bold">
               {item.value}
             </p>
             <p className={`text-sm flex items-center ${trendColor}`}>
