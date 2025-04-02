@@ -154,19 +154,19 @@ const Stocks: React.FC = () => {
           <table className="min-w-full bg-white dark:bg-gray-800 rounded-md table-fixed">
             <thead className="bg-gray-100 dark:bg-gray-700">
               <tr>
-                <th className="py-3 px-4 text-left text-clampTableText font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-1/5">
+                <th className="py-3 px-4 text-left text-clampTableHeading font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-1/4">
                   Symbol
                 </th>
-                <th className="py-3 px-4 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-1/5">
+                <th className="py-3 px-4 text-right text-clampTableHeading font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-1/4">
                   Price
                 </th>
-                <th className="py-3 px-4 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-1/5">
+                <th className="py-3 px-1 text-right text-clampTableHeading font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-1/4">
                   Change (24h)
                 </th>
-                <th className="py-3 px-4 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-1/5">
+                <th className="py-3 px-4 text-right text-clampTableHeading font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-1/4">
                   % Change
                 </th>
-                <th className="py-3 px-4 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-1/5">
+                <th className="py-3 px-4 text-right text-clampTableHeading font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-1/4">
                   Volume
                 </th>
               </tr>
@@ -175,7 +175,7 @@ const Stocks: React.FC = () => {
               {stockData?.map((stock, index) => (
                 <tr
                   key={`${stock.ticker}-${index}`}
-                  className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                  className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-clampTableData"
                 >
                   <td className="py-4 px-4 whitespace-nowrap font-medium text-gray-900 dark:text-white">
                     {stock.ticker}

@@ -6,3 +6,8 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
 }
+
+@theme {
+  --text-clampTableHeading: clamp(0.7rem, 2vw, 0.75rem);
+  --text-clampTableData: clamp(0.7rem, 2vw, 0.75rem);
+}
